@@ -16,9 +16,9 @@ conda activate O2MAG
 
 We use AnomalyDiffusion masks for MVTec-AD and SeaS for VisA/Real-IAD.
 
-We have released the generated 500 image-mask pairs for MVTec-AD.
+We have released the generated image-mask pairs for MVTec-AD.
 
-https://drive.google.com/drive/folders/1_RxRJy-PqFTEgja3vdkwf7BnaVhnPgrl?usp=drive_link
+Generated 500 image-mask pairs: [Google Drive Link](https://drive.google.com/drive/folders/1_RxRJy-PqFTEgja3vdkwf7BnaVhnPgrl?usp=drive_link)
 
 ## Normal Data Augmentation
 
@@ -61,3 +61,8 @@ python edit_anomaly_moregpu_oneshot.py --root ./datasets/mvtec \
     --pairs-file name-mvtec.txt --devices cuda:2,cuda:3,cuda:4,cuda:5
 ```
 
+- `--root`: Path to the MVTec-AD dataset.
+- `--normal_path`: Path to the augmented normal data.
+- `--sourece_image_mask`: Directory containing the generated anomaly masks.
+- `--pairs-file` : Specifies the object category and anomaly type to generate (e.g., `'cable+combined'`).
+- `--devices` : Specifies the GPUs to be used. For single-GPU execution, use `--devices cuda:0,` (note the trailing comma).
