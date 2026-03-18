@@ -10,8 +10,6 @@ conda env create -f environment.yml
 conda activate O2MAG
 ```
 
-
-
 ## Mask Generation
 
 We use AnomalyDiffusion masks for MVTec-AD and SeaS for VisA/Real-IAD.
@@ -27,8 +25,6 @@ See Appendix C.1. for detailed information.
 ```
 python ./img_augment.py
 ```
-
-
 
 ## Anomaly Generation
 
@@ -50,7 +46,7 @@ python ./app_edit_anomaly_mask.py
 edit_anomaly_mask.ipynb
 ```
 
-3. Generate 1000 anomaly images per anomaly type.  About 30G
+3. Generate 1000 anomaly images per anomaly type.  About 24G.
 
 ```
 python edit_anomaly_moregpu_oneshot.py --root ./datasets/mvtec \
@@ -66,3 +62,60 @@ python edit_anomaly_moregpu_oneshot.py --root ./datasets/mvtec \
 - `--sourece_image_mask`: Directory containing the generated anomaly masks.
 - `--pairs-file` : Specifies the object category and anomaly type to generate (e.g., `'cable+combined'`).
 - `--devices` : Specifies the GPUs to be used. For single-GPU execution, use `--devices cuda:0,` (note the trailing comma).
+
+## Attention Map Visualization
+
+To visualize the attention maps, please follow these steps:
+
+1. **Enable Attention Storage:** In `triag/mca_p2p.py`, change `AttentionBase` to `AttentionStore`.    *(Note: This process requires approx. 32GB of VRAM).*
+2. **Run the Visualization Script:** Execute the `visualization_attention_map.py` script. It is ready to run out-of-the-box, but please ensure you update the following variables inside the script to match your local environment:   `model_path` and paths for the corresponding reference anomaly and normal images.
+
+## Evaluation
+
+### Compute KID
+
+```
+python eval/compute-kid.py --generated_path $path_to_the_generated_data  --real_path=$path_to_mvtec
+```
+
+### Anomaly detection
+
+Train U-Net
+
+```
+python train-localization.py \
+  --mvtec_path=$path_to_mvtec \
+  --generated_data_path=$path_to_the_generated_data \
+  --save_path=$path_to_save_checkpoint
+```
+
+Test
+
+```
+python test-localization.py \
+  --mvtec_path=$path_to_mvtec \
+  --checkpoint_path=$path_to_save_checkpoint
+```
+
+### Anomaly classification
+
+Train ResNet-34
+
+```
+python train-classification.py --mvtec_path $path_to_mvtec \
+ --generated_data_path $path_to_the_generated_data \
+ --checkpoint_path $path_to_save_checkpoint
+```
+
+Test
+
+```
+python test-classification.py --mvtec_path $path_to_mvtec \
+ --generated_data_path $path_to_the_generated_data \
+ --checkpoint_path $path_to_save_checkpoint
+```
+
+## Citation
+
+If you find our work useful in your research, please consider citing our paper.
+
