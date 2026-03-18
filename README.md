@@ -20,7 +20,7 @@ Generated 500 image-mask pairs: [Google Drive Link](https://drive.google.com/dri
 
 ## Normal Data Augmentation
 
-See Appendix C.1. for detailed information. We highly encourage you to explore other augmentation strategies to achieve better performance.
+See Appendix C.1. for detailed information. We encourage you to explore other augmentation strategies to achieve better performance.
 
 ```
 python ./img_augment.py
