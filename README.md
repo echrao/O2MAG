@@ -54,7 +54,7 @@ python edit_anomaly_moregpu_oneshot.py --root ./datasets/mvtec \
     --sourece_image_mask ./anomalydiffusion/generated_mask \
     --embedding_file ./embed_bank/mvtec \
     --outputs_path ./generated_data_fewshot/mvtec \
-    --pairs-file name-mvtec.txt --devices cuda:2,cuda:3,cuda:4,cuda:5
+    --pairs-file ./anomaly_name/name-mvtec.txt --devices cuda:2,cuda:3,cuda:4,cuda:5
 ```
 
 - `--root`: Path to the MVTec-AD dataset.
