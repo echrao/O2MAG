@@ -132,4 +132,14 @@ The generation results of anomaly images and normal images are shown as follows:
 ## Citation
 
 If you find our work useful in your research, please consider citing our paper.
-
+'''
+@misc{rao2026onetomorehighfidelitytrainingfreeanomaly,
+      title={One-to-More: High-Fidelity Training-Free Anomaly Generation with Attention Control}, 
+      author={Haoxiang Rao and Zhao Wang and Chenyang Si and Yan Lyu and Yuanyi Duan and Fang Zhao and Caifeng Shan},
+      year={2026},
+      eprint={2603.18093},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2603.18093}, 
+}
+'''
